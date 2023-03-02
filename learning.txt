@@ -1,0 +1,74 @@
+I wrote a web app called Learning Log that allows user to log the topics they're interested in
+and to make journal entries as they learn about each topic.
+
+writing specs -----> creating environment -----> acitvate -------> install Django ------> Create project -----> Create A database ----->Viewing project ------> Start an app ------>
+
+
+-We create a virtual Environment.
+* A place in our system, where you can install packages and isolate them from all other python packages.
+  Seperating one project's libraries from other is beneficial and will be necessary when we deploy our project to a server.
+
+
+{
+$ python -m venv ll_env (we use venv module to create Virtual environment named ll_env).
+
+OR
+
+$ pip install --user virtualenv (install virtualenv package)
+$ virtualenv ll_env  ( creating virtual environment using virtualenv)
+}
+
+
+$ ll_env\Scripts\activate (to activate virtual environment. *And use command prompt for this*)
+$ (ll_env) C:\Users\..........>deactivate (to deactivate the virtual environment.)
+
+
+$ pip install django
+
+
+$ django-admin startproject learning_log . ( Creating a Project in Django,  this command tells django to setup a new project)
+							(dot in the end tells OS to create the project in the current folder, instead of creating a folder for it.)
+							(this command will create one project (setting.py,urls.py,wsgi.py etc.,), &  a manage.py file.)
+	 						(This manage.py a short prohram that takes in commands and feeds to the)
+							( relevant part of Django to run them.)
+
+
+$ python manage.py migrate (Django  store most of the information related to a project in a database).(first time we use mograte, it tells django to make sure
+					(databse matches the current state of the project.)
+
+
+$ python manage.py runserver (This command will your run your django server through local host)
+					(and 8000 indicates that the project is listening for the request on port 8000 on your computer-local host)
+
+
+**Django project is a organized collection of individual app that work together to make the project work as whole.**
+
+
+$ python manage.py startapp learning_logs (tells django to create the infrastructur needed to build an app)
+							(imp. files - models.py, admin.py, & views.py)
+	
+	model.py - define the data we want to manage in our app
+
+
+**Activating Models - Go to setting.py and enter learning_logs into INSTALLED_APPS\
+
+$ python manage.py makemigrations learning_logs		(make migration tells django to modify the databas so it can store data
+									 associated with any new models we've defined.)
+
+$ python manage.py migrate	(apply migration and django modigify the database for us.)
+
+
+**Django admin site - Django make you use admin site to work easily with the models. site's administrator use admin site, not general site
+
+$ python manage.py createsuperuser
+		(now go to admin.py and import Topics from learning_logs, and register a Model with the Admin Site.)
+
+** ForeignKey requires two positional arguments: the class to which the model is related and the on_delete option.
+	{topic = models.ForeignKey(Topic, on_delete=models.CASCADE,)}
+
+
+
+
+
+
+
